@@ -1,11 +1,18 @@
-import { render, screen } from "@testing-library/react";
-import App from "./App";
-import { describe, it, vi } from "vitest";
+// import { render, screen } from "@testing-library/react";
+// import App from "./App";
+// import { describe, expect, it, vi } from "vitest";
+// import { ReactElement } from "react";
 
-describe("Render learn react line", () => {});
+// describe("Render learn react line", () => {
+//   let app: ReactElement;
+//   const whenTheAppIsRendered = () => {
+//     app = render(<App />);
+//   };
 
-// test('renders learn react link', () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
+//   const thenTheAppIsWellFormed = () => {};
+
+//   it("Given a react app component, when the component is rendered, then the component is well formed", () => {
+//     whenTheAppIsRendered();
+//     thenTheAppIsWellFormed();
+//   });
 // });
