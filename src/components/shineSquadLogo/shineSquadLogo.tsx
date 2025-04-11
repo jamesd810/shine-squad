@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "./logo.png";
-import "../../src/App.css";
+import logo from "../../assets/images/logo.png";
+import "../../assets/styles/App.css";
 
 const ShineSquadLogo = (): React.JSX.Element => {
   return (

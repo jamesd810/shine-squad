@@ -1,7 +1,12 @@
 import React from "react";
-import "./App.css";
-import ShineSquadLogo from "./assets/images/shineSquadLogo";
+import "./assets/styles/App.css";
+import ShineSquadLogo from "./components/shineSquadLogo/shineSquadLogo";
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
+import Home from "./pages/Home/home";
+import About from "./pages/About Us/aboutUs";
+import Services from "./pages/Services/services";
+import Help from "./pages/Help/help";
+import Contact from "./pages/Contact/contact";
 
 const App = (): React.JSX.Element => {
   return (
