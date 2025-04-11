@@ -1,11 +1,11 @@
 import React from "react";
-import shineSquadLogo from "./shineSquadLogo.png";
+import logo from "./logo.png";
 import "../../src/App.css";
 
 const ShineSquadLogo = (): React.JSX.Element => {
   return (
     <>
-      <img className={"shineSquadLogo"} src={shineSquadLogo} alt="logo" />
+      <img className={"shineSquadLogo"} src={logo} alt="logo" />
     </>
   );
 };
