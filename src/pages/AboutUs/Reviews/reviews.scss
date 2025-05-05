@@ -1,0 +1,167 @@
+// Variables for easy customization
+$primary-color: #007bff;
+$bg-light: #f8f9fa;
+$text-dark: #333;
+$text-light: #666;
+$border-light: #e0e0e0;
+$max-width: 800px;
+
+// Base styles
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: $text-dark;
+  line-height: 1.6;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Header
+header {
+  background-color: $bg-light;
+  padding: 20px 0;
+  border-bottom: 1px solid $border-light;
+
+  h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 2em;
+  }
+}
+
+// Navigation
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  padding: 10px 0;
+  border-bottom: 1px solid $border-light;
+
+  a {
+    margin: 0 15px;
+    color: $text-dark;
+    font-weight: bold;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+// Main Content
+main {
+  max-width: $max-width;
+  margin: 40px auto;
+  padding: 0 20px;
+
+  h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+
+  .review {
+    border-bottom: 1px solid $border-light;
+    padding: 20px 0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 1.2em;
+      color: $primary-color;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+// Sidebar
+aside {
+  background-color: $bg-light;
+  padding: 20px;
+  margin-top: 40px;
+  border: 1px solid $border-light;
+
+  h3 {
+    margin-top: 0;
+  }
+}
+
+// Footer
+footer {
+  background-color: $bg-light;
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid $border-light;
+  margin-top: 40px;
+
+  p {
+    margin: 0;
+    font-size: 0.9em;
+    color: $text-light;
+  }
+}
+
+// === Responsive Design ===
+
+// Tablets and smaller
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5em;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+
+    a {
+      margin: 10px 0;
+    }
+  }
+
+  main {
+    padding: 0 15px;
+
+    .review h3 {
+      font-size: 1.1em;
+    }
+  }
+
+  aside {
+    margin-top: 20px;
+    padding: 15px;
+  }
+}
+
+// Phones
+@media (max-width: 480px) {
+  main h2 {
+    font-size: 1.5em;
+  }
+
+  .review {
+    padding: 15px 0;
+
+    h3 {
+      font-size: 1em;
+    }
+  }
+
+  footer {
+    font-size: 0.8em;
+    padding: 15px 0;
+  }
+}
