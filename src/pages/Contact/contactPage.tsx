@@ -1,5 +1,5 @@
 import React from "react";
-import "./ContactPage.scss";
+import "./contactPage.scss";
 
 const ContactPage = () => {
   return (

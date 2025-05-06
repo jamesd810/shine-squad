@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Header.scss"; // Ensure this SCSS file is compiled to CSS
+import "./header.scss"; // Ensure this SCSS file is compiled to CSS
 
 const Header = (): React.JSX.Element => {
   return (
