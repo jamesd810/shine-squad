@@ -12,7 +12,11 @@ const HomePage = () => {
             Tidiness – our forte. Our services – impeccable. You’re just clicks
             away from a clean home.
           </p>
-          <a href="/book-now" className="btn-primary">
+          <a
+            href="https://book.housecallpro.com/book/Shine-Squad-Cleaning-Service/6646bb6f7df0452cb1375108a3dd810c?v2=true"
+            className="btn-primary"
+            target="_blank"
+          >
             Book Now
           </a>
         </div>
@@ -94,7 +98,11 @@ const HomePage = () => {
       {/* Call to Action Section */}
       <section className="call-to-action">
         <h2>Easier. Faster. Better. Book our professional cleaners now.</h2>
-        <a href="/book-now" className="btn-primary">
+        <a
+          href="https://book.housecallpro.com/book/Shine-Squad-Cleaning-Service/6646bb6f7df0452cb1375108a3dd810c?v2=true"
+          className="btn-primary"
+          target="_blank"
+        >
           Book Now
         </a>
       </section>
