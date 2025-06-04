@@ -1,7 +1,8 @@
 import React from "react";
+import "./jobApplication.scss";
 
 const JobDescription = (): React.JSX.Element => (
-  <section>
+  <section className="job-description">
     <h2>Become a Cleaning Professional!</h2>
     <p>
       We know that finding a good and stable cleaning job can be challenging.
