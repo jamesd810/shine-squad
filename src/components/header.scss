@@ -16,8 +16,9 @@
   .main-nav ul {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    gap: 0.2rem;
     position: relative;
+    margin-left: auto;
 
     li {
       position: relative;
@@ -27,7 +28,7 @@
         text-decoration: none;
         color: #333;
         font-weight: 500;
-        padding: 0.5rem;
+        padding: 0.3rem;
         cursor: pointer;
       }
 
@@ -35,7 +36,7 @@
         .dropdown-menu {
           display: none;
           position: absolute;
-          top: 2.5rem;
+          top: 1.2rem;
           left: 0;
           background: #fff;
           border: 1px solid #eee;
