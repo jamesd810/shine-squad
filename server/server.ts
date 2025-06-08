@@ -24,15 +24,15 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post("/apply", upload.single("resume"), async (req, res) => {
-  const { fullName, email, phone, experience } = req.body;
+  const { firstName, lastName, email, phone, experience } = req.body;
   // @ts-ignore
   const resume = req.file;
 
   const mailOptions = {
     from: email,
     to: process.env.EMAIL_TO,
-    subject: `New Job Application from ${fullName}`,
-    text: `Name: ${fullName}\nEmail: ${email}\nPhone: ${phone}\nExperience: ${experience} years`,
+    subject: `New Job Application from ${firstName} ${lastName}`,
+    text: `Name: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nExperience: ${experience} years`,
     attachments: resume
       ? [
           {

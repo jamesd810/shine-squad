@@ -1,5 +1,5 @@
 import { describe, it } from "vitest";
-import ShineSquadLogo from "../../../components/shineSquadLogo/shineSquadLogo";
+import ShineSquadLogo from "../logo.png";
 import { render, screen } from "@testing-library/react";
 
 describe("ShineSquadLogo", () => {

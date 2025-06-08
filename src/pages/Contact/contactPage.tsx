@@ -1,5 +1,10 @@
 // ContactPage.jsx
-import React, { useState } from "react";
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  FormEventHandler,
+  useState,
+} from "react";
 import "./contactPage.scss";
 
 const ContactPage = () => {
@@ -10,11 +15,13 @@ const ContactPage = () => {
     message: "",
   });
 
+  // @ts-ignore
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // @ts-ignore
   const handleSubmit = (event) => {
     event.preventDefault();
     alert("Your message has been submitted!");
@@ -89,7 +96,7 @@ const ContactPage = () => {
             value={formData.message}
             onChange={handleChange}
             placeholder="Your Message"
-            rows="5"
+            rows={5}
             required
           ></textarea>
           <button type="submit">Send Message</button>

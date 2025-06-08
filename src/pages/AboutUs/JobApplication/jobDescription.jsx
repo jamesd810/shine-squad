@@ -1,8 +1,11 @@
-import React from "react";
-import "./jobApplication.scss";
-
-const JobDescription = (): React.JSX.Element => (
-  <section className="job-description">
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(require("react"));
+require("./jobApplication.scss");
+const JobDescription = () => (<section className="job-description">
     <section className="section">
       <h2>Become a Cleaning Professional!</h2>
       <p>
@@ -52,7 +55,5 @@ const JobDescription = (): React.JSX.Element => (
         <li>No difficult apps to work with</li>
       </ul>
     </section>
-  </section>
-);
-
-export default JobDescription;
+  </section>);
+exports.default = JobDescription;

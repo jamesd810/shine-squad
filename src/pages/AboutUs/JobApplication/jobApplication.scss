@@ -1,11 +1,12 @@
 .job-description {
-  padding: 2rem;
   font-family: "Helvetica Neue", sans-serif;
   color: #333;
   background-color: #f9f9f9;
+  text-align: center;
+  border-radius: 10px;
 
   h2 {
-    font-size: 2.8rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #1a1a1a;
     text-align: center;
@@ -13,9 +14,69 @@
 
   p {
     max-width: 900px;
-    margin: 0 auto 1.5rem;
-    line-height: 1.7;
-    font-size: 1.1rem;
+    line-height: 1.5;
+    font-size: 1rem;
     color: #555;
+  }
+
+  .section {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    width: 50%;
+    margin: auto;
+    margin-top: 1rem;
+  }
+
+  .section-requirements {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin: auto;
+    margin-top: 1rem;
+    width: 25%;
+    display: inline-block;
+  }
+
+  .div-test {
+    float: right;
+  }
+
+  ul {
+    list-style-position: inside;
+    text-align: left;
+  }
+
+  .what-we-offer {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    width: 20%;
+    margin: auto;
+    margin-top: 1rem;
+  }
+}
+
+.job-application-form {
+  font-family: "Helvetica Neue", sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+  text-align: center;
+  border-radius: 10px;
+
+  h2 {
+    text-align: center;
+  }
+
+  .app-form {
+    border-radius: 10px;
+    width: 30%;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin: auto;
+    text-align: left;
   }
 }
