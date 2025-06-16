@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS, // Google App Password
+    pass: process.env.EMAIL_PASS,
   },
 });
 
@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
 router.post("/apply", upload.single("resume"), async (req, res) => {
   try {
     const { firstName, lastName, email, phone } = req.body;
-    const resume = req.file; // Multer saves the uploaded file here
+    const resume = req.file;
 
     if (!resume) {
       return res.status(400).json({ message: "Resume file is required." });
@@ -31,9 +31,9 @@ router.post("/apply", upload.single("resume"), async (req, res) => {
 
     // Prepare the email
     const mailOptions = {
-      from: process.env.EMAIL_USER, // must match transporter auth user
-      to: process.env.EMAIL_USER, // sending to yourself
-      replyTo: email, // replies go to applicant
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      replyTo: email,
       subject: `New Job Application: ${firstName} ${lastName}`,
       text: `
 New job application received:
@@ -67,6 +67,10 @@ Resume is attached.
     console.error("Error sending application:", error);
     res.status(500).json({ message: "Failed to send application." });
   }
+});
+
+router.get("/apply", (req, res) => {
+  res.send("✅ GET /apply is working!");
 });
 
 export default router;

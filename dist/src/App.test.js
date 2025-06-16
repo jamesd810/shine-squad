@@ -3,6 +3,7 @@
 // import App from "./App";
 // import { describe, expect, it, vi } from "vitest";
 // import { ReactElement } from "react";
+Object.defineProperty(exports, "__esModule", { value: true });
 // describe("Render learn react line", () => {
 //   let app: ReactElement;
 //   const whenTheAppIsRendered = () => {
