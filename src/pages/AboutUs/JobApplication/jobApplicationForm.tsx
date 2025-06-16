@@ -30,15 +30,15 @@ const JobApplicationForm = ({
     e.preventDefault();
 
     const formPayload = new FormData();
-    formPayload.append("fullName", formData.firstName);
-    formPayload.append("fullName", formData.lastName);
+    formPayload.append("firstName", formData.firstName);
+    formPayload.append("lastName", formData.lastName);
     formPayload.append("email", formData.email);
     formPayload.append("phone", formData.phone);
     formPayload.append("experience", formData.experience);
-    // formPayload.append("resume", formData.resume);
+    formPayload.append("resume", formData.resume as unknown as string | Blob);
 
     try {
-      const response = await fetch("http://localhost:5000/apply", {
+      const response = await fetch("http://localhost:5000/api/apply", {
         method: "POST",
         body: formPayload,
       });
