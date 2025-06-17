@@ -41,28 +41,19 @@ const ContactPage = () => {
 
       <section className="contact-info">
         <div className="info-block">
+          <h3>How to reach us</h3>
           <h3>Phone</h3>
-          <p>(773) 255-0482</p>
+          <p>(402) 606-1810</p>
           <h3>Email</h3>
           <p>info@shinesquadchicago.com</p>
           <h3>Hours</h3>
           <p>
-            Mon–Sat: 8am – 6pm
+            Mon–Sat: 8am – 7pm
             <br />
             Sunday: Closed
           </p>
-        </div>
-        <div className="info-block">
           <h3>Email</h3>
           <p>info@shinesquadchicago.com</p>
-        </div>
-        <div className="info-block">
-          <h3>Hours</h3>
-          <p>
-            Mon–Sat: 8am – 6pm
-            <br />
-            Sunday: Closed
-          </p>
         </div>
       </section>
 
