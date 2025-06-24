@@ -1,7 +1,5 @@
 import React from "react";
 import "./aboutUs.scss";
-import shield from "../../assets/images/shield.png";
-import clock from "../../assets/images/clock.jpg";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import BeachAccessIcon from "@mui/icons-material/BeachAccess";

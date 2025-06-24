@@ -1,10 +1,5 @@
 // ContactPage.jsx
-import React, {
-  ChangeEvent,
-  ChangeEventHandler,
-  FormEventHandler,
-  useState,
-} from "react";
+import React, { useState } from "react";
 import "./contactPage.scss";
 
 const ContactPage = () => {

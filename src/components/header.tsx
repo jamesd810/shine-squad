@@ -37,19 +37,6 @@ const Header = () => {
             <span>
               <Link to="/services">Services</Link>
             </span>
-            <ul className="dropdown-menu">
-              <li>
-                <Link to="/services/standard-cleaning">Standard Cleaning</Link>
-              </li>
-              <li>
-                <Link to="/services/deep-cleaning">Deep Cleaning</Link>
-              </li>
-              <li>
-                <Link to="/services/move-in-out-cleaning">
-                  Move-in/out Cleaning
-                </Link>
-              </li>
-            </ul>
           </li>
           <li>
             <Link to="/help">Help</Link>

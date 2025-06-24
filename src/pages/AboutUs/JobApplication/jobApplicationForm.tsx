@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEventHandler, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import "./jobApplication.scss";
 
 type JobApplicationFormProps = {
