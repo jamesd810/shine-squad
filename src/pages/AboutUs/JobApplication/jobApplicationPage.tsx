@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import JobDescription from "./JobDescription.jsx";
-import JobApplicationForm from "./JobApplicationForm.jsx";
-import ThankYouMessage from "./ThankYouMessage.jsx";
+import JobDescription from "./JobDescription";
+import JobApplicationForm from "./JobApplicationForm";
+import ThankYouMessage from "./ThankYouMessage";
 
 const JobApplicationPage = (): React.JSX.Element => {
   const [submitted, setSubmitted] = useState(false);

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import StandardCleaning from "../../components/cleaningServices/StandardCleaning.jsx";
-import DeepCleaning from "../../components/cleaningServices/DeepCleaning.jsx";
-import MoveInMoveOutCleaning from "../../components/cleaningServices/MoveInMoveOutCleaning.jsx";
+import StandardCleaning from "../../components/cleaningServices/StandardCleaning";
+import DeepCleaning from "../../components/cleaningServices/DeepCleaning";
+import MoveInMoveOutCleaning from "../../components/cleaningServices/MoveInMoveOutCleaning";
 import "./servicesPage.scss";
 
 const ServicesPage = (): React.JSX.Element => {

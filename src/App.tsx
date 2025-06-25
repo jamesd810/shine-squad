@@ -1,15 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/header.jsx";
-import Footer from "./components/footer.jsx";
-import Home from "./pages/Home/HomePage.jsx";
-import AboutUs from "./pages/AboutUs/aboutUs.jsx";
-import HowWeWork from "./pages/AboutUs/HowWeWork/HowWeWork.jsx";
-import JobApplicationPage from "./pages/AboutUs/JobApplication/JobApplicationPage.jsx";
-import Reviews from "./pages/AboutUs/Reviews/reviews.jsx";
-import Services from "./pages/Services/ServicesPage.jsx";
-import Help from "./pages/Help/HelpPage.jsx";
-import ContactPage from "./pages/Contact/ContactPage.jsx";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import Home from "./pages/Home/HomePage";
+import AboutUs from "./pages/AboutUs/aboutUs";
+import HowWeWork from "./pages/AboutUs/HowWeWork/HowWeWork";
+import JobApplicationPage from "./pages/AboutUs/JobApplication/JobApplicationPage";
+import Reviews from "./pages/AboutUs/Reviews/reviews";
+import Services from "./pages/Services/ServicesPage";
+import Help from "./pages/Help/HelpPage";
+import ContactPage from "./pages/Contact/ContactPage";
 import "./styles/main.scss";
 
 const App = () => {
