@@ -6,37 +6,46 @@ import MoveInMoveOutCleaning from "../../components/cleaningServices/MoveInMoveO
 import "./servicesPage.scss";
 
 const ServicesPage = (): React.JSX.Element => {
-  const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [selectedService, setSelectedService] = useState<string | null>(
+    "standard"
+  );
 
-  const handleServiceSelection = () => {
-    if (selectedService === "standard") {
-      return <StandardCleaning />;
-    } else if (selectedService === "deep") {
-      return <DeepCleaning />;
-    } else if (selectedService === "moveinmoveout") {
-      return <MoveInMoveOutCleaning />;
-    }
-  };
+  let content: React.JSX.Element | null = null;
+
+  if (selectedService === "deep") {
+    content = <DeepCleaning />;
+  } else if (selectedService === "moveinmoveout") {
+    content = <MoveInMoveOutCleaning />;
+  } else {
+    content = <StandardCleaning />;
+  }
+
   return (
     <div className="services-page">
       <section className="intro">
         <h1>Services</h1>
         <h2>Types of cleaning we offer</h2>
         <ul>
-          <Button variant="contained" onClick={handleServiceSelection}>
+          <Button
+            variant="contained"
+            onClick={() => setSelectedService("standard")}
+          >
             <li>Standard</li>
           </Button>
-          <Button variant="contained" onClick={handleServiceSelection}>
+          <Button
+            variant="contained"
+            onClick={() => setSelectedService("deep")}
+          >
             <li>Deep</li>
           </Button>
-          <Button variant="contained" onClick={handleServiceSelection}>
+          <Button
+            variant="contained"
+            onClick={() => setSelectedService("moveinmoveout")}
+          >
             <li>Move In/Out</li>
           </Button>
         </ul>
-
-        {selectedService === "standard" && <StandardCleaning />}
-        {selectedService === "deep" && <DeepCleaning />}
-        {selectedService === "moveinmoveout" && <MoveInMoveOutCleaning />}
+        {content}
       </section>
     </div>
   );
