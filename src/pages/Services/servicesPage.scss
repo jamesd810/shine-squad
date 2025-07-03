@@ -31,8 +31,17 @@
     }
   }
 
+  .sectionContainer {
+    display: flex;
+    justify-content: center;
+  }
+
   .service-category {
     margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
 
     h3 {
       font-size: 1.8rem;
@@ -45,9 +54,14 @@
     ul {
       list-style: disc;
       padding-left: 20px;
+      display: block;
+      padding-left: 1.5rem; // Ensures proper indentation
 
       li {
         margin-bottom: 5px;
+        display: list-item;
+        word-break: break-word; // Ensures long text wraps correctly
+        list-style-type: none;
       }
     }
   }
