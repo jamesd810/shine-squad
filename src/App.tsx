@@ -6,7 +6,7 @@ import Home from "./pages/Home/HomePage";
 import AboutUs from "./pages/AboutUs/aboutUs";
 import HowWeWork from "./pages/AboutUs/HowWeWork/HowWeWork";
 import JobApplicationPage from "./pages/AboutUs/JobApplication/JobApplicationPage";
-import Reviews from "./pages/AboutUs/Reviews/reviews";
+import Reviews from "./pages/AboutUs/Reviews/Reviews";
 import Services from "./pages/Services/ServicesPage";
 import Help from "./pages/Help/HelpPage";
 import ContactPage from "./pages/Contact/ContactPage";

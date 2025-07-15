@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import JobDescription from "./JobDescription";
-import JobApplicationForm from "./JobApplicationForm";
+import JobApplicationForm from "./JobApplicationForm/JobApplicationForm";
 import ThankYouMessage from "./ThankYouMessage";
 
 const JobApplicationPage = (): React.JSX.Element => {

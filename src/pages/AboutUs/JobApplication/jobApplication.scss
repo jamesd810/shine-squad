@@ -1,6 +1,6 @@
 .job-description {
   font-family: "Helvetica Neue", sans-serif;
-  color: #333;
+  color: black;
   background-color: #f9f9f9;
   text-align: center;
   border-radius: 10px;
@@ -8,7 +8,6 @@
   h2 {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #1a1a1a;
     text-align: center;
   }
 
@@ -16,7 +15,6 @@
     max-width: 900px;
     line-height: 1.5;
     font-size: 1rem;
-    color: #555;
   }
 
   .section {
@@ -68,15 +66,5 @@
 
   h2 {
     text-align: center;
-  }
-
-  .app-form {
-    border-radius: 10px;
-    width: 30%;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    margin: auto;
-    text-align: left;
   }
 }
