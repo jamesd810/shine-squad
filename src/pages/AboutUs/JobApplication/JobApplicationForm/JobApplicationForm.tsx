@@ -4,18 +4,18 @@ import "./jobApplicationForm.scss";
 type JobApplicationFormProps = {
   onSubmit: () => void;
 };
-
+const applicant = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  experience: "",
+  resume: {},
+};
 const JobApplicationForm = ({
   onSubmit,
 }: JobApplicationFormProps): React.JSX.Element => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    experience: "",
-    resume: {},
-  });
+  const [formData, setFormData] = useState(applicant);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = event.target;
@@ -43,7 +43,7 @@ const JobApplicationForm = ({
       });
 
       if (response.ok) {
-        onSubmit(); // Show thank-you message
+        onSubmit();
       } else {
         alert("Something went wrong. Please try again.");
       }
