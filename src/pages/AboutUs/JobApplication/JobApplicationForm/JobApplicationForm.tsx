@@ -1,4 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
+import axios from "axios";
+import isValidEmail from "../../../../utilities/isValidEmail";
+import isValidPhoneNumber from "../../../../utilities/isValidPhoneNumber";
 import "./jobApplicationForm.scss";
 
 type JobApplicationFormProps = {
@@ -16,6 +19,24 @@ const JobApplicationForm = ({
   onSubmit,
 }: JobApplicationFormProps): React.JSX.Element => {
   const [formData, setFormData] = useState(applicant);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  let message: string;
+
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    if (name === "email" && !isValidEmail(value)) {
+      message = "Invalid email address";
+    }
+    if (name === "phone" && !isValidPhoneNumber(value)) {
+      message = "Invalid phone number";
+    }
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: message,
+    }));
+  };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = event.target;
@@ -23,6 +44,10 @@ const JobApplicationForm = ({
       ...prevData,
       [name]: files ? files[0] : value,
     }));
+  };
+
+  const onClick = () => {
+    setErrors({});
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -37,12 +62,12 @@ const JobApplicationForm = ({
     formPayload.append("resume", formData.resume as unknown as string | Blob);
 
     try {
-      const response = await fetch("http://localhost:5000/api/apply", {
+      const response = await axios.post("http://localhost:5000/api/apply", {
         method: "POST",
         body: formPayload,
       });
 
-      if (response.ok) {
+      if (response.status === 200) {
         onSubmit();
       } else {
         alert("Something went wrong. Please try again.");
@@ -58,6 +83,7 @@ const JobApplicationForm = ({
       <div className="app-form">
         <h2>Start Your Cleaning Professional Career Now!</h2>
 
+        {errors.firstName && <div className="error">{errors.lastName}</div>}
         <input
           placeholder="First Name"
           type="text"
@@ -67,6 +93,7 @@ const JobApplicationForm = ({
           required
         />
 
+        {errors.lastName && <div className="error">{errors.lastName}</div>}
         <input
           placeholder="Last Name"
           type="text"
@@ -76,20 +103,25 @@ const JobApplicationForm = ({
           required
         />
 
+        {errors.email && <div className="error">{errors.email}</div>}
         <input
           type="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
+          onBlur={handleBlur}
+          onClick={onClick}
           required
           placeholder="Email Address"
         />
 
+        {errors.phone && <div className="error">{errors.phone}</div>}
         <input
           type="tel"
           name="phone"
           value={formData.phone}
           onChange={handleChange}
+          onBlur={handleBlur}
           required
           placeholder="Phone Number"
         />

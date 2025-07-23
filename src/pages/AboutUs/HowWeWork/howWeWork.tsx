@@ -1,4 +1,3 @@
-import React from "react";
 import "./howWeWork.scss";
 import blackLady from "../../../assets/images/black-lady-image.jpg";
 import confirmationEmail from "../../../assets/images/confirmationEmail.jpg";
