@@ -1,5 +1,3 @@
-import React from "react";
-
 const ThankYouMessage = (): React.JSX.Element => (
   <section>
     <h2>Thank You!</h2>

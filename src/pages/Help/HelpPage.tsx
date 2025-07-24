@@ -1,5 +1,3 @@
-// HelpPage.jsx
-import React from "react";
 import "./help.scss";
 
 const HelpPage = () => {

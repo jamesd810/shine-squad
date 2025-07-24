@@ -1,14 +1,14 @@
-import express from "express";
+import express, { type Router } from "express";
 import nodemailer from "nodemailer";
 import multer from "multer";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const router = express.Router();
+const router: Router = express.Router();
 
 // Setup Multer for file uploads
-const upload = multer({ dest: "uploads/" }); // saves to /uploads temporarily
+const upload = multer({ dest: "uploads/" });
 
 // Setup Nodemailer transporter for Google Workspace
 const transporter = nodemailer.createTransport({
@@ -22,11 +22,13 @@ const transporter = nodemailer.createTransport({
 // POST /api/apply — handles form submission
 router.post("/apply", upload.single("resume"), async (req, res) => {
   try {
+    console.log(req.body);
     const { firstName, lastName, email, phone } = req.body;
+
     const resume = req.file;
 
     if (!resume) {
-      return res.status(400).json({ message: "Resume file is required." });
+      return res.status(400).send({ message: "Resume file is required." });
     }
 
     // Prepare the email
@@ -62,10 +64,10 @@ Resume is attached.
     // Send the email
     await transporter.sendMail(mailOptions);
 
-    res.status(200).json({ message: "Application sent successfully!" });
+    res.status(200).send({ message: "Application sent successfully!" });
   } catch (error) {
     console.error("Error sending application:", error);
-    res.status(500).json({ message: "Failed to send application." });
+    res.status(500).send({ message: "Failed to send application." });
   }
 });
 

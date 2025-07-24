@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { type ChangeEvent, useState } from "react";
 import axios from "axios";
 import isValidEmail from "../../../../utilities/isValidEmail";
 import isValidPhoneNumber from "../../../../utilities/isValidPhoneNumber";
@@ -65,6 +65,9 @@ const JobApplicationForm = ({
       const response = await axios.post("http://localhost:5000/api/apply", {
         method: "POST",
         body: formPayload,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
       });
 
       if (response.status === 200) {

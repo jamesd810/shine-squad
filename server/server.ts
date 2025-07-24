@@ -1,9 +1,8 @@
 import express from "express";
-import applyRoute from "./sendApplication.js"; // adjust path if needed
+import applyRoute from "./middleware/sendApplication.js";
 
 const app = express();
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", applyRoute);

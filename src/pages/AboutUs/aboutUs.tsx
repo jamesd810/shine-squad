@@ -1,4 +1,3 @@
-import React from "react";
 import "./aboutUs.scss";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
