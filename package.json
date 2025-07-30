@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "react-scripts start",
-    "start-server": "node ./dist/server/server.js",
+    "server": "nodemon --watch server --watch src --ext ts,tsx --exec \"npm run build-server && node ./dist/server/server.js\"",
     "build": "react-scripts build",
     "build-server": "tsc",
     "test": "react-scripts test",
@@ -45,6 +45,7 @@
     "ipaddr.js": "^2.2.0",
     "multer": "^2.0.2",
     "nodemailer": "^7.0.2",
+    "nodemon": "^3.1.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.60.0",

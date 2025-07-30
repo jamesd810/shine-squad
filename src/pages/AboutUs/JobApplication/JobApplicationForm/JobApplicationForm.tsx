@@ -7,23 +7,32 @@ import "./jobApplicationForm.scss";
 type JobApplicationFormProps = {
   onSubmit: () => void;
 };
-const applicant = {
+
+type Application = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  experience: string;
+  resume?: File;
+};
+const applicantDetails: Application = {
   firstName: "",
   lastName: "",
   email: "",
   phone: "",
   experience: "",
-  resume: {},
+  resume: undefined,
 };
 const JobApplicationForm = ({
   onSubmit,
 }: JobApplicationFormProps): React.JSX.Element => {
-  const [formData, setFormData] = useState(applicant);
+  const [formData, setFormData] = useState(applicantDetails);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   let message: string;
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleNameInput = (event: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === "email" && !isValidEmail(value)) {
       message = "Invalid email address";
@@ -53,22 +62,19 @@ const JobApplicationForm = ({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const formPayload = new FormData();
-    formPayload.append("firstName", formData.firstName);
-    formPayload.append("lastName", formData.lastName);
-    formPayload.append("email", formData.email);
-    formPayload.append("phone", formData.phone);
-    formPayload.append("experience", formData.experience);
-    formPayload.append("resume", formData.resume as unknown as string | Blob);
+    const userDataToSend = new FormData();
+    userDataToSend.append("firstName", formData.firstName);
+    userDataToSend.append("lastName", formData.lastName);
+    userDataToSend.append("email", formData.email);
+    userDataToSend.append("phone", formData.phone);
+    userDataToSend.append("experience", formData.experience);
+    userDataToSend.append("resume", formData.resume as File);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/apply", {
-        method: "POST",
-        body: formPayload,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/apply",
+        userDataToSend
+      );
 
       if (response.status === 200) {
         onSubmit();
@@ -112,7 +118,7 @@ const JobApplicationForm = ({
           name="email"
           value={formData.email}
           onChange={handleChange}
-          onBlur={handleBlur}
+          onBlur={handleNameInput}
           onClick={onClick}
           required
           placeholder="Email Address"
@@ -124,7 +130,7 @@ const JobApplicationForm = ({
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          onBlur={handleBlur}
+          onBlur={handleNameInput}
           required
           placeholder="Phone Number"
         />

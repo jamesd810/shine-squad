@@ -2,29 +2,33 @@ import express, { type Router } from "express";
 import nodemailer from "nodemailer";
 import multer from "multer";
 import dotenv from "dotenv";
+import { test } from "vitest";
 
 dotenv.config();
 
 const router: Router = express.Router();
+const testuser = "info@shinesquadchicago.com";
 
 // Setup Multer for file uploads
 const upload = multer({ dest: "uploads/" });
 
-// Setup Nodemailer transporter for Google Workspace
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    type: "OAuth2",
+    user: testuser,
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    refreshToken: process.env.REFRESH_TOKEN,
+    accessToken: process.env.ACCESS_TOKEN,
   },
 });
 
-// POST /api/apply — handles form submission
 router.post("/apply", upload.single("resume"), async (req, res) => {
   try {
-    console.log(req.body);
     const { firstName, lastName, email, phone } = req.body;
-
     const resume = req.file;
 
     if (!resume) {
@@ -33,8 +37,8 @@ router.post("/apply", upload.single("resume"), async (req, res) => {
 
     // Prepare the email
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
+      from: testuser,
+      to: process.env.EMAIL_TO,
       replyTo: email,
       subject: `New Job Application: ${firstName} ${lastName}`,
       text: `
@@ -66,13 +70,13 @@ Resume is attached.
 
     res.status(200).send({ message: "Application sent successfully!" });
   } catch (error) {
-    console.error("Error sending application:", error);
+    console.error("Message:", error);
     res.status(500).send({ message: "Failed to send application." });
   }
 });
 
-router.get("/apply", (req, res) => {
-  res.send("✅ GET /apply is working!");
+router.get("/health", (_req, res) => {
+  res.send("✅ GET /health is working!");
 });
 
 export default router;
