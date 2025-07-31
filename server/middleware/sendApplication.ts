@@ -1,54 +1,35 @@
 import express, { type Router } from "express";
-import nodemailer from "nodemailer";
 import multer from "multer";
 import dotenv from "dotenv";
-import { test } from "vitest";
+import fs from "fs";
+import { sendEmail } from "../helper/createTransporterHelper.js";
 
 dotenv.config();
 
 const router: Router = express.Router();
-const testuser = "info@shinesquadchicago.com";
-
-// Setup Multer for file uploads
 const upload = multer({ dest: "uploads/" });
-
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    type: "OAuth2",
-    user: testuser,
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    refreshToken: process.env.REFRESH_TOKEN,
-    accessToken: process.env.ACCESS_TOKEN,
-  },
-});
 
 router.post("/apply", upload.single("resume"), async (req, res) => {
   try {
     const { firstName, lastName, email, phone } = req.body;
     const resume = req.file;
-
     if (!resume) {
       return res.status(400).send({ message: "Resume file is required." });
     }
 
-    // Prepare the email
     const mailOptions = {
-      from: testuser,
+      from: process.env.SENDER_EMAIL,
       to: process.env.EMAIL_TO,
       replyTo: email,
       subject: `New Job Application: ${firstName} ${lastName}`,
       text: `
-New job application received:
+            New job application received:
 
-Name: ${firstName} ${lastName}
-Email: ${email}
-Phone: ${phone}
+            Name: ${firstName} ${lastName}
+            Email: ${email}
+            Phone: ${phone}
 
-Resume is attached.
+            Resume is attached.
       `,
       html: `
         <h2>New Job Application</h2>
@@ -66,7 +47,11 @@ Resume is attached.
     };
 
     // Send the email
-    await transporter.sendMail(mailOptions);
+    await sendEmail(mailOptions);
+
+    fs.unlink(resume.path, (err) => {
+      if (err) console.error("Failed to delete uploaded file:", err);
+    });
 
     res.status(200).send({ message: "Application sent successfully!" });
   } catch (error) {

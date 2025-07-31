@@ -72,7 +72,7 @@ const JobApplicationForm = ({
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/apply",
+        "http://localhost:3000/api/apply",
         userDataToSend
       );
 
