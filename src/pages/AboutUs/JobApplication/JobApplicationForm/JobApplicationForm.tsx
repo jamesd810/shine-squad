@@ -77,7 +77,7 @@ const JobApplicationForm = ({
       );
 
       if (response.status === 200) {
-        onSubmit();
+        alert("Email sent, thank you!");
       } else {
         alert("Something went wrong. Please try again.");
       }
@@ -135,16 +135,8 @@ const JobApplicationForm = ({
           placeholder="Phone Number"
         />
 
-        <input
-          type="number"
-          name="experience"
-          value={formData.experience}
-          onChange={handleChange}
-          required
-          min="0"
-          placeholder="Years of Experience"
-        />
         <br />
+        
         <label>
           Resume:
           <input
