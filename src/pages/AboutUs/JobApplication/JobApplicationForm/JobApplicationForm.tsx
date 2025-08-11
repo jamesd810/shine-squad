@@ -2,6 +2,7 @@ import React, { type ChangeEvent, useState } from "react";
 import axios from "axios";
 import isValidEmail from "../../../../utilities/isValidEmail";
 import isValidPhoneNumber from "../../../../utilities/isValidPhoneNumber";
+import Spinner from "react-bootstrap/Spinner";
 import "./jobApplicationForm.scss";
 
 type JobApplicationFormProps = {
@@ -29,6 +30,8 @@ const JobApplicationForm = ({
 }: JobApplicationFormProps): React.JSX.Element => {
   const [formData, setFormData] = useState(applicantDetails);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [loading, setLoading] = useState(false);
+
   let message: string;
 
   const handleNameInput = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -62,6 +65,7 @@ const JobApplicationForm = ({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    setLoading(true);
     const userDataToSend = new FormData();
     userDataToSend.append("firstName", formData.firstName);
     userDataToSend.append("lastName", formData.lastName);
@@ -85,6 +89,8 @@ const JobApplicationForm = ({
       console.error(error);
       alert("An error occurred. Please try again.");
     }
+
+    setLoading(false);
   };
 
   return (
@@ -163,7 +169,12 @@ const JobApplicationForm = ({
             required
           />
         </label>
-        <button type="submit">Submit Application</button>
+
+        {loading ? (
+          <Spinner animation="border" />
+        ) : (
+          <button type="submit">Submit Application</button>
+        )}
       </div>
     </form>
   );
