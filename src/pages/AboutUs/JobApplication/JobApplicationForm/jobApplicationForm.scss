@@ -37,6 +37,27 @@ form {
       background-color: #155a8a;
     }
   }
+
+  .input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .input-group .error {
+    position: absolute;
+    top: -1.2em;
+    left: 0;
+    color: red;
+    font-size: 0.95em;
+    margin-bottom: 0;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .row {
+    display: flex;
+    gap: 1rem; // space between the two input groups
+  }
 }
 
 .error {
