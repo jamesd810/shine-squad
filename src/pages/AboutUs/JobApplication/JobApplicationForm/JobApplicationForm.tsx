@@ -1,8 +1,9 @@
-import React, { type ChangeEvent, useState } from "react";
+import React, { type ChangeEvent, useState, useEffect, FormEvent } from "react";
 import axios from "axios";
 import isValidEmail from "../../../../utilities/isValidEmail";
 import isValidPhoneNumber from "../../../../utilities/isValidPhoneNumber";
-import Spinner from "react-bootstrap/Spinner";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
+
 import "./jobApplicationForm.scss";
 
 type JobApplicationFormProps = {
@@ -37,10 +38,10 @@ const JobApplicationForm = ({
   const handleNameInput = (event: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     message = "";
-    if (name === "email" && !isValidEmail(value)) {
+    if (name === "email" && value && !isValidEmail(value)) {
       message = "Invalid email address";
     }
-    if (name === "phone" && !isValidPhoneNumber(value)) {
+    if (name === "phone" && value && !isValidPhoneNumber(value)) {
       message = "Invalid phone number";
     }
 
@@ -52,6 +53,7 @@ const JobApplicationForm = ({
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = event.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: files ? files[0] : value,
@@ -80,24 +82,27 @@ const JobApplicationForm = ({
         userDataToSend,
       );
 
-      if (response.status === 200) {
-        alert("Email sent, thank you!");
-      } else {
-        alert("Something went wrong. Please try again.");
-      }
+      setFormData(applicantDetails);
+      setErrors({});
+      setLoading(false);
+      onSubmit();
     } catch (error) {
-      console.error(error);
-      alert("An error occurred. Please try again.");
+      setLoading(false);
+      console.error("An error occurred sending the resume: ", error);
     }
-
-    setLoading(false);
   };
+
+  const isFormComplete =
+    formData.firstName &&
+    formData.lastName &&
+    formData.email &&
+    formData.phone &&
+    formData.resume;
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="app-form">
         <h2>Start Your Cleaning Professional Career Now!</h2>
-
         <div className="row">
           <div className="input-group">
             {errors.firstName && <div className="error">{errors.lastName}</div>}
@@ -125,7 +130,6 @@ const JobApplicationForm = ({
             />
           </div>
         </div>
-
         <div className="row">
           <div className="input-group">
             {errors.email && <div className="error">{errors.email}</div>}
@@ -156,9 +160,7 @@ const JobApplicationForm = ({
             {errors.phone && <div className="error">{errors.phone}</div>}
           </div>
         </div>
-
         <br />
-
         <label>
           Resume:
           <input
@@ -170,11 +172,15 @@ const JobApplicationForm = ({
           />
         </label>
 
-        {loading ? (
-          <Spinner animation="border" />
-        ) : (
-          <button type="submit">Submit Application</button>
+        {loading && (
+          <div className="spinner-overlay">
+            <LoadingSpinner />
+          </div>
         )}
+
+        <button type="submit" disabled={!isFormComplete}>
+          Submit Application
+        </button>
       </div>
     </form>
   );

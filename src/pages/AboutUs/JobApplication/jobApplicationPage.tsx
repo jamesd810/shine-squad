@@ -4,22 +4,21 @@ import JobApplicationForm from "./JobApplicationForm/JobApplicationForm";
 import ThankYouMessage from "./ThankYouMessage";
 
 const JobApplicationPage = (): React.JSX.Element => {
-  const [submitted, setSubmitted] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleFormSubmit = () => {
-    setSubmitted(true);
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
   return (
     <div>
-      {!submitted ? (
-        <>
-          <JobDescription />
-          <JobApplicationForm onSubmit={handleFormSubmit} />
-        </>
-      ) : (
-        <ThankYouMessage />
-      )}
+      <JobDescription />
+      <JobApplicationForm onSubmit={handleFormSubmit} />
+      <ThankYouMessage open={snackbarOpen} onClose={handleSnackbarClose} />
     </div>
   );
 };
