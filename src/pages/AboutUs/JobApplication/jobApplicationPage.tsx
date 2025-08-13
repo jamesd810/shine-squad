@@ -17,8 +17,10 @@ const JobApplicationPage = (): React.JSX.Element => {
   return (
     <div>
       <JobDescription />
-      <JobApplicationForm onSubmit={handleFormSubmit} />
-      <ThankYouMessage open={snackbarOpen} onClose={handleSnackbarClose} />
+      <div>
+        <JobApplicationForm onSubmit={handleFormSubmit} />
+        <ThankYouMessage open={snackbarOpen} onClose={handleSnackbarClose} />
+      </div>
     </div>
   );
 };
