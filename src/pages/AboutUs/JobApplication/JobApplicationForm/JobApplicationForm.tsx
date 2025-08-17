@@ -77,10 +77,7 @@ const JobApplicationForm = ({
     userDataToSend.append("resume", formData.resume as File);
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/apply",
-        userDataToSend,
-      );
+      await axios.post("http://localhost:3000/api/apply", userDataToSend);
 
       setFormData(applicantDetails);
       setErrors({});
@@ -173,7 +170,7 @@ const JobApplicationForm = ({
         </label>
 
         {loading && (
-          <div className="spinner-overlay">
+          <div className="spinner-veralay">
             <LoadingSpinner />
           </div>
         )}
