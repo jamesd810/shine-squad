@@ -16,6 +16,7 @@ const HomePage = () => {
             href="https://book.housecallpro.com/book/Shine-Squad-Cleaning-Service/6646bb6f7df0452cb1375108a3dd810c?v2=true"
             className="btn-primary"
             target="_blank"
+            rel="noreferrer"
           >
             Book Now
           </a>
@@ -102,6 +103,7 @@ const HomePage = () => {
           href="https://book.housecallpro.com/book/Shine-Squad-Cleaning-Service/6646bb6f7df0452cb1375108a3dd810c?v2=true"
           className="btn-primary"
           target="_blank"
+          rel="noreferrer"
         >
           Book Now
         </a>

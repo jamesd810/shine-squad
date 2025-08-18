@@ -41,6 +41,7 @@ const HelpPage = () => {
             <a
               href="https://book.housecallpro.com/book/Shine-Squad-Cleaning-Service/6646bb6f7df0452cb1375108a3dd810c?v2=true"
               target="_blank"
+              rel="noreferrer"
             >
               here
             </a>{" "}
