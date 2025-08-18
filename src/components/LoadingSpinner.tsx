@@ -1,9 +1,13 @@
-import Spinner from "react-bootstrap/Spinner";
+import { ClipLoader } from "react-spinners";
 
-const LoadingSpinner = (): React.JSX.Element => {
+type LoadingSpinnerProps = {
+  size?: number
+}
+
+const LoadingSpinner = ({ size }: LoadingSpinnerProps): React.JSX.Element => {
   return (
     <div>
-      <Spinner animation="border" variant="success" role="status" />
+      <ClipLoader size={size} />
     </div>
   );
 };

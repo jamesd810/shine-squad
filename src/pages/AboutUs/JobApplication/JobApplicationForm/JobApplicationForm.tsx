@@ -1,4 +1,4 @@
-import React, { type ChangeEvent, useState, useEffect, FormEvent } from "react";
+import React, { type ChangeEvent, useState } from "react";
 import axios from "axios";
 import isValidEmail from "../../../../utilities/isValidEmail";
 import isValidPhoneNumber from "../../../../utilities/isValidPhoneNumber";
@@ -169,14 +169,12 @@ const JobApplicationForm = ({
           />
         </label>
 
-        {loading && (
-          <div className="spinner-veralay">
-            <LoadingSpinner />
-          </div>
-        )}
-
-        <button type="submit" disabled={!isFormComplete}>
-          Submit Application
+        <button
+          type="submit"
+          disabled={!isFormComplete || loading}
+          onClick={handleSubmit}
+        >
+          {loading ? <LoadingSpinner size={20} /> : "Submit Application"}
         </button>
       </div>
     </form>
