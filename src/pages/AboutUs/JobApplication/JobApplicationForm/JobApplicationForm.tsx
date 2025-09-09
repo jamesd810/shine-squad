@@ -18,6 +18,7 @@ type Application = {
   experience: string;
   resume?: File;
 };
+
 const applicantDetails: Application = {
   firstName: "",
   lastName: "",
@@ -26,6 +27,9 @@ const applicantDetails: Application = {
   experience: "",
   resume: undefined,
 };
+
+const url = process.env!.REACT_API_URL ?? '';
+
 const JobApplicationForm = ({
   onSubmit,
 }: JobApplicationFormProps): React.JSX.Element => {
@@ -77,7 +81,7 @@ const JobApplicationForm = ({
     userDataToSend.append("resume", formData.resume as File);
 
     try {
-      await axios.post("http://localhost:3000/api/apply", userDataToSend);
+      await axios.post(url, userDataToSend);
 
       setFormData(applicantDetails);
       setErrors({});
