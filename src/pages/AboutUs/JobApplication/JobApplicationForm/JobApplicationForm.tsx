@@ -28,7 +28,9 @@ const applicantDetails: Application = {
   resume: undefined,
 };
 
-const url = process.env!.REACT_API_URL ?? '';
+// Use CRA-style env var so it will be embedded at build time.
+// Default to relative API path so frontend can talk to the same origin when served by the Node server.
+const url = process.env.REACT_APP_API_URL ?? "/api/apply";
 
 const JobApplicationForm = ({
   onSubmit,

@@ -1,9 +1,8 @@
 import express, { type Router } from "express";
 import multer from "multer";
 import dotenv from "dotenv";
-import fs from "fs";
 import { sendEmail } from "../helpers/createTransporterHelper.js";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 dotenv.config();
 
@@ -49,10 +48,6 @@ router.post("/apply", upload.single("resume"), async (req, res) => {
 
     // Send the email
     await sendEmail(mailOptions);
-
-    // fs.unlink(resume.path, (err) => {
-    //   if (err) console.error("Failed to delete uploaded file:", err);
-    // });
 
     res.status(200).send({ message: "Application sent successfully!" });
   } catch (error) {
