@@ -3,11 +3,13 @@ import multer from "multer";
 import dotenv from "dotenv";
 import { sendEmail } from "../helpers/createTransporterHelper.js";
 import axios from "axios";
+import { content } from "googleapis/build/src/apis/content/index.js";
 
 dotenv.config();
 
 const router: Router = express.Router();
-const upload = multer({ dest: "uploads/" });
+// Use memory storage instead of disk storage
+const upload = multer({ storage: multer.memoryStorage() });
 
 router.post("/apply", upload.single("resume"), async (req, res) => {
   try {
@@ -41,7 +43,7 @@ router.post("/apply", upload.single("resume"), async (req, res) => {
       attachments: [
         {
           filename: resume.originalname,
-          path: resume.path,
+          content: resume.buffer,
         },
       ],
     };
