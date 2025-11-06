@@ -3,7 +3,6 @@ import multer from "multer";
 import dotenv from "dotenv";
 import { sendEmail } from "../helpers/createTransporterHelper.js";
 import axios from "axios";
-import { content } from "googleapis/build/src/apis/content/index.js";
 
 dotenv.config();
 
