@@ -5,7 +5,7 @@ import corsOrigin from "./helpers/corsOrigin.js";
 
 const app = express();
 const buildPath = path.resolve(process.cwd(), "build");
-const PORT = Number(process.env.PORT) || 3000;
+const PORT = Number(process.env.PORT) || 8080;
 
 app.use(corsOrigin());
 
