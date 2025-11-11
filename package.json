@@ -4,15 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "server": "nodemon --watch server --watch src --ext ts,tsx --exec \"npm run build-server && node ./dist/server/server.js\"",
-    "build": "react-scripts build",
+    "dev-frontend": "react-scripts start",
+    "dev-server": "nodemon --watch server --watch src --ext ts,tsx --exec \"npm run build-server && node ./dist/server/server.js\"",
+    "build": "npm run build-frontend && npm run build-server",
+    "build-frontend": "react-scripts build",
     "build-server": "tsc",
-    "build-prod": "npm run build && npm run build-server",
-    "start:prod": "node ./dist/server/server.js",
-    "postinstall": "npm run build-server",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start-prod": "node ./dist/server/server.js",
+    "start-app": "npm run build && npm run start-prod",
+    "start-dev": "npm run build && npm run dev-frontend & npm run dev-server",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
