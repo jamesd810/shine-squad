@@ -1,8 +1,9 @@
-import React, { type ChangeEvent, useState } from "react";
+import React, { type ChangeEvent, useState, useRef } from "react";
 import axios from "axios";
 import isValidEmail from "../../../../utilities/isValidEmail";
 import isValidPhoneNumber from "../../../../utilities/isValidPhoneNumber";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
+import emailjs from "@emailjs/browser";
 
 import "./jobApplicationForm.scss";
 
@@ -28,9 +29,7 @@ const applicantDetails: Application = {
   resume: undefined,
 };
 
-// Use CRA-style env var so it will be embedded at build time.
-// Default to relative API path so frontend can talk to the same origin when served by the Node server.
-const url = process.env.REACT_APP_API_URL ?? "/api/apply";
+// const url = process.env.REACT_APP_API_URL ?? "/api/apply";
 
 const JobApplicationForm = ({
   onSubmit,
@@ -71,7 +70,24 @@ const JobApplicationForm = ({
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
+    const form = useRef("");
     event.preventDefault();
+
+    try {
+      const response = emailjs.sendForm(
+        process.env.EMAIL_JS_SERVICE_ID as string,
+        "",
+        form.current,
+        {
+          publicKey: process.env.EMAIL_JS_PUBLIC_KEY,
+        },
+      );
+      return response;
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("EmailJS error: ", error.message);
+      }
+    }
 
     setLoading(true);
     const userDataToSend = new FormData();
@@ -82,17 +98,17 @@ const JobApplicationForm = ({
     userDataToSend.append("experience", formData.experience);
     userDataToSend.append("resume", formData.resume as File);
 
-    try {
-      await axios.post(url, userDataToSend);
+    // try {
+    //   await axios.post(url, userDataToSend);
 
-      setFormData(applicantDetails);
-      setErrors({});
-      setLoading(false);
-      onSubmit();
-    } catch (error) {
-      setLoading(false);
-      console.error("An error occurred sending the resume: ", error);
-    }
+    //   setFormData(applicantDetails);
+    //   setErrors({});
+    //   setLoading(false);
+    //   onSubmit();
+    // } catch (error) {
+    //   setLoading(false);
+    //   console.error("An error occurred sending the resume: ", error);
+    // }
   };
 
   const isFormComplete =
