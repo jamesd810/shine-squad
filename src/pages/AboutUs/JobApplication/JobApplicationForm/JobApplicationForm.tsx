@@ -28,10 +28,10 @@ const applicantDetails: Application = {
   resume: undefined,
 };
 
-const API_BASE = (import.meta.env.VITE_API_URL ??
-  (import.meta.env.MODE === "development"
+const API_BASE =
+  import.meta.env.mode === "development"
     ? "http://localhost:5000"
-    : "/api")) as string;
+    : import.meta.env.VITE_API_URL;
 const apiBaseClean = API_BASE.replace(/\/$/, "");
 const url = `${apiBaseClean}/apply`;
 
