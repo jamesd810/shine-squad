@@ -15,7 +15,6 @@ type Application = {
   lastName: string;
   email: string;
   phone: string;
-  experience: string;
   resume?: File;
 };
 
@@ -24,13 +23,12 @@ const applicantDetails: Application = {
   lastName: "",
   email: "",
   phone: "",
-  experience: "",
   resume: undefined,
 };
 
 const API_BASE =
-  import.meta.env.mode === "development"
-    ? "http://localhost:5000"
+  import.meta.env.MODE === "development"
+    ? "http://localhost:5175"
     : import.meta.env.VITE_API_URL;
 const apiBaseClean = API_BASE.replace(/\/$/, "");
 const url = `${apiBaseClean}/apply`;
@@ -82,7 +80,6 @@ const JobApplicationForm = ({
     userDataToSend.append("lastName", formData.lastName);
     userDataToSend.append("email", formData.email);
     userDataToSend.append("phone", formData.phone);
-    userDataToSend.append("experience", formData.experience);
     userDataToSend.append("resume", formData.resume as File);
 
     try {
@@ -111,7 +108,9 @@ const JobApplicationForm = ({
         <h2>Start Your Cleaning Professional Career Now!</h2>
         <div className="row">
           <div className="input-group">
-            {errors.firstName && <div className="error">{errors.lastName}</div>}
+            {errors.firstName && (
+              <div className="error">{errors.firstName}</div>
+            )}
 
             <input
               placeholder="First Name"
