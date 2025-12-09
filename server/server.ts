@@ -3,9 +3,9 @@ import express from "express";
 import multer from "multer";
 import nodemailer from "nodemailer";
 import cors from "cors";
+import ViteExpress from "vite-express";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 // Configure CORS to only allow requests from your React frontend URL
 const corsOptions = {
@@ -21,37 +21,34 @@ const upload = multer({
   storage: multer.memoryStorage(),
 });
 
-// Configure Nodemailer transporter (using Gmail as an example)
+// Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: "smtp.dreamhost.com",
-  port: 587,
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  secure: true,
+  logger: true,
+  debug: true,
 });
 
-// Define the POST route for resume submission
-// 'resume' is the field name that must match the input name in your React form
 app.post("/apply", upload.single("resume"), async (req, res) => {
-  // req.file contains the uploaded file data as a buffer
-  // req.body contains the text fields (firstName, lastName)
+  const { firstName, lastName, phoneNumber, email: applicantEmail } = req.body;
 
   if (!req.file) {
     return res.status(400).send("No file uploaded.");
   }
-
-  const { firstName, lastName, email: applicantEmail } = req.body;
-
   const mailOptions = {
     from: applicantEmail,
-    to: process.env.BUSINESS_EMAIL_RECIPIENT, // Your business email address
+    to: process.env.BUSINESS_EMAIL_ADDRESS,
     subject: `New Resume Submission: ${firstName} ${lastName}`,
     html: `<p>A new resume has been submitted.</p>
            <ul>
              <li>First Name: ${firstName}</li>
              <li>Last Name: ${lastName}</li>
+             <li>Last Name: ${phoneNumber}</li>
            </ul>`,
     attachments: [
       {
@@ -66,15 +63,15 @@ app.post("/apply", upload.single("resume"), async (req, res) => {
     await transporter.sendMail(mailOptions);
     res.status(200).send("Resume submitted successfully!");
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Error sending email: ", error);
     res.status(500).send("Error submitting resume.");
   }
 });
 
-app.get("/health", (r_eq, res) => {
+app.get("/health", (_req, res) => {
   res.status(200).send("Server is healthy");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+ViteExpress.listen(app, 5175, () => {
+  console.log(`Server running...`);
 });
