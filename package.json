@@ -7,7 +7,9 @@
     "start": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "fresh-install": "rm -rf node_modules && rm -f package-lock.json && npm install"
+    "fresh-install": "rm -rf node_modules && rm -f package-lock.json && npm install",
+    "build-server": "tsc",
+    "server": "nodemon ./server/dist/server.js"
   },
   "eslintConfig": {
     "extends": [
@@ -28,23 +30,18 @@
     ]
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@formspree/react": "^3.0.0",
     "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.3.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
-    "axios": "^1.10.0",
-    "cors": "^2.8.5",
-    "express": "^4.21.2",
+    "axios": "^1.13.2",
     "fraction.js": "^5.2.2",
-    "googleapis": "^154.1.0",
     "ipaddr.js": "^2.2.0",
-    "multer": "^2.0.2",
-    "nodemailer": "^7.0.2",
     "nodemon": "^3.1.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
