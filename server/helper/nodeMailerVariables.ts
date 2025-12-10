@@ -9,15 +9,13 @@ export const corsOptions = {
 
 // Configure Nodemailer transporter
 export const transporter = nodemailer.createTransport({
-  service: "smtp.dreamhost.com",
-  port: 465,
+  host: "smtp.dreamhost.com",
+  port: 587,
   secure: true,
   auth: {
-    user: process.env.EMAIL_USER,
+    user: process.env.BUSINESS_EMAIL_ADDRESS,
     pass: process.env.EMAIL_PASS,
   },
-  logger: true,
-  debug: true,
 });
 
 // Configure Multer to store files in memory as a buffer
