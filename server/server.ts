@@ -7,7 +7,6 @@ import {
   transporter,
   upload,
 } from "./helper/nodeMailerVariables.js";
-import { businessEmailAddress } from "./helper/constants.js";
 
 const app = express();
 
@@ -24,8 +23,8 @@ app.post("/apply", upload.single("resume"), async (req, res) => {
     return res.status(400).send("No file uploaded.");
   }
   const mailOptions = {
-    from: businessEmailAddress,
-    to: businessEmailAddress,
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
     subject: `New Resume Submission: ${firstName} ${lastName}`,
     html: `<p>A new resume has been submitted.</p>
            <ul>

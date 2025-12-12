@@ -1,6 +1,6 @@
+import { CorsOptions } from "cors";
 import multer from "multer";
 import nodemailer from "nodemailer";
-import { businessEmailAddress } from "./constants.js";
 
 // Configure CORS to only allow requests from your React frontend URL
 export const corsOptions = {
@@ -14,8 +14,8 @@ export const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: businessEmailAddress,
-    pass: "coDQ@3h#by7DWt3F",
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
   },
 });
 
