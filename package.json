@@ -8,7 +8,7 @@
     "build": "vite build",
     "prod": "vite preview",
     "fresh-install": "rm -rf node_modules .vite && rm -f package-lock.json && npm install",
-    "build-server": "tsc",
+    "build-server": "rm -rf dist && tsc",
     "server": "nodemon ./dist/server/server.js"
   },
   "eslintConfig": {

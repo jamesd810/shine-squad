@@ -1,20 +1,21 @@
 import multer from "multer";
 import nodemailer from "nodemailer";
+import { businessEmailAddress } from "./constants.js";
 
 // Configure CORS to only allow requests from your React frontend URL
 export const corsOptions = {
-  origin: process.env.FRONTEND_URL,
-  optionsSuccessStatus: 200, // For legacy browser support
+  origin: "http://localhost:5173",
+  optionsSuccessStatus: 200,
 };
 
 // Configure Nodemailer transporter
 export const transporter = nodemailer.createTransport({
   host: "smtp.dreamhost.com",
-  port: 587,
+  port: 465,
   secure: true,
   auth: {
-    user: process.env.BUSINESS_EMAIL_ADDRESS,
-    pass: process.env.EMAIL_PASS,
+    user: businessEmailAddress,
+    pass: "coDQ@3h#by7DWt3F",
   },
 });
 
