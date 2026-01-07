@@ -47,14 +47,8 @@ const Header = () => {
         </ul>
       </nav>
       <div className="header-actions">
-        <Button
-          variant="contained"
-          href="https://book.housecallpro.com/book/Shine-Squad-Cleaning-Service/6646bb6f7df0452cb1375108a3dd810c?v2=true"
-          target="_blank"
-        >
-          Book Now
-        </Button>
-        <Button variant="contained">(402) 606-1810</Button>
+        <Button variant="contained">Book Now</Button>
+        <Button variant="contained">(810) 288-9804</Button>
       </div>
     </header>
   );

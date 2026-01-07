@@ -28,8 +28,8 @@ const applicantDetails: Application = {
 
 const API_BASE =
   import.meta.env.MODE === "development"
-    ? "http://localhost:5175"
-    : import.meta.env.VITE_API_URL;
+    ? import.meta.env.VITE_LOCALHOST_API_URL
+    : process.env.API_URL;
 const apiBaseClean = API_BASE.replace(/\/$/, "");
 const url = `${apiBaseClean}/apply`;
 
@@ -39,6 +39,7 @@ const JobApplicationForm = ({
   const [formData, setFormData] = useState(applicantDetails);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   let message: string;
 
@@ -86,6 +87,8 @@ const JobApplicationForm = ({
       await axios.post(url, userDataToSend);
 
       setFormData(applicantDetails);
+      // clear the native file input so the browser UI no longer shows the selected file
+      if (fileInputRef.current) fileInputRef.current.value = "";
       setErrors({});
       setLoading(false);
       onSubmit();
@@ -169,6 +172,7 @@ const JobApplicationForm = ({
         <label>
           Resume:
           <input
+            ref={fileInputRef}
             type="file"
             name="resume"
             accept=".pdf,.doc,.docx"
@@ -177,11 +181,7 @@ const JobApplicationForm = ({
           />
         </label>
 
-        <button
-          type="submit"
-          disabled={!isFormComplete || loading}
-          onClick={handleSubmit}
-        >
+        <button type="submit" disabled={!isFormComplete || loading}>
           {loading ? <LoadingSpinner size={20} /> : "Submit Application"}
         </button>
       </div>

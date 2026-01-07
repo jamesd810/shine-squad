@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import JobDescription from "./JobDescription";
 import JobApplicationForm from "./JobApplicationForm/JobApplicationForm";
-import ThankYouMessage from "./ThankYouMessage";
+import { ThankYouMessage } from "./ThankYouMessage";
 
-const JobApplicationPage = (): React.JSX.Element => {
+export const JobApplicationPage = (): React.JSX.Element => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleFormSubmit = () => {

@@ -1,10 +1,15 @@
 import { CorsOptions } from "cors";
 import multer from "multer";
 import nodemailer from "nodemailer";
+import "dotenv/config";
 
-// Configure CORS to only allow requests from your React frontend URL
-export const corsOptions = {
-  origin: "http://localhost:5173",
+// Configure CORS to only allow requests for localhost and the specified frontend URLs
+export const corsOptions: CorsOptions = {
+  origin: [
+    process.env.VITE_LOCALHOST_URL || "http://localhost:5173",
+    process.env.FRONTEND_URL,
+    process.env.FRONTEND_URL_TWO,
+  ].filter(Boolean) as string[],
   optionsSuccessStatus: 200,
 };
 

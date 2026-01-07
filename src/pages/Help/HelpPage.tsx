@@ -45,7 +45,7 @@ const HelpPage = () => {
             >
               here
             </a>{" "}
-            or by calling us at (402) 606-1810.
+            or by calling us at (810) 288-9804.
           </p>
         </div>
 

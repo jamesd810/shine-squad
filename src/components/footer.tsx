@@ -91,7 +91,7 @@ const Footer = (): React.JSX.Element => {
 
         {/* Bottom Line */}
         <div className="footer-bottom">
-          <p>Handcrafted with ♥ by ThemeStreet</p>
+          <p>Handcrafted with ♥</p>
         </div>
       </div>
     </footer>

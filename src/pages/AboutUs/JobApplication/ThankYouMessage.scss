@@ -8,7 +8,23 @@
   font-size: 1rem;
   text-align: center;
   max-width: 400px;
-  transition: opacity 0.3s;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
   z-index: 100;
   cursor: pointer;
+}
+
+.thank-you-snackbar.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.thank-you-snackbar.fade-out {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.thank-you-snackbar:not(.fade-in):not(.fade-out) {
+  opacity: 0;
 }

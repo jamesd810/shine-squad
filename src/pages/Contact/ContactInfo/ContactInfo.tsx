@@ -17,7 +17,7 @@ export const ContactInfo = () => {
           <h1>How to reach us</h1>
           <img src={CleaningCrew} alt="cleaning-crew" />
           <h3>Phone</h3>
-          <p>(402) 606-1810</p>
+          <p>(810) 288-9804</p>
           <h3>Email</h3>
           <p>info@shinesquadchicago.com</p>
           <h3>Hours</h3>
