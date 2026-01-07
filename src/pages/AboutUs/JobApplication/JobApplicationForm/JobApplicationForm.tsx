@@ -61,11 +61,23 @@ const JobApplicationForm = ({
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = event.target;
+    const fieldValue = files ? files[0] : value;
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]: files ? files[0] : value,
+      [name]: fieldValue,
     }));
+
+    // live-validate email and phone so error messages remain until corrected
+    if (name === "email") {
+      const msg = value && !isValidEmail(value) ? "Invalid email address" : "";
+      setErrors((prev) => ({ ...prev, email: msg }));
+    }
+
+    if (name === "phone") {
+      const msg = value && !isValidPhoneNumber(value) ? "Invalid phone number" : "";
+      setErrors((prev) => ({ ...prev, phone: msg }));
+    }
   };
 
   const onClick = () => {
@@ -99,11 +111,13 @@ const JobApplicationForm = ({
   };
 
   const isFormComplete =
-    formData.firstName &&
-    formData.lastName &&
-    formData.email &&
-    formData.phone &&
-    formData.resume;
+    Boolean(formData.firstName) &&
+    Boolean(formData.lastName) &&
+    Boolean(formData.email) &&
+    Boolean(formData.phone) &&
+    Boolean(formData.resume);
+
+  const hasErrors = Object.values(errors).some((v) => Boolean(v));
 
   return (
     <form onSubmit={handleSubmit}>
@@ -181,7 +195,7 @@ const JobApplicationForm = ({
           />
         </label>
 
-        <button type="submit" disabled={!isFormComplete || loading}>
+        <button type="submit" disabled={!isFormComplete || hasErrors || loading}>
           {loading ? <LoadingSpinner size={20} /> : "Submit Application"}
         </button>
       </div>

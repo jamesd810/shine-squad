@@ -1,10 +1,22 @@
-const phoneRegex = /^\+?[1-9]\d{1,14}$/;
+/* 
+Accepts these formats:
+(555)555-5555
+1 (555) 555-5555
+1 (555)-555-5555
+555-555-5555
++1-555-532-3455
+1-555-532-3455
+1-555-532-3455 ext 4
+1 (555) 555-5555 extension 123456789123456
+5555555555
+*/
+const phoneRegex =
+  /(?=(?:^(?:\+?1\s*(?:[.-]\s*)?)?(?!(?:(?:.*\(.*)|(?:.*\).*)))(?:[2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))|(?:.*\((?:[2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\).*))(?:\+?1\s*(?:[.-]\s*)?)?(?:\(?([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\)?)\s*(?:[.-]\s*)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d{1,15}))?$/gm;
 
 const isValidPhoneNumber = (phoneNumber: number | string): boolean => {
-  if (typeof phoneNumber !== "string" || phoneNumber.length === 0) {
-    return false;
-  }
-  return phoneRegex.test(phoneNumber);
+  const str = String(phoneNumber ?? "").trim();
+  if (str.length === 0) return false;
+  return phoneRegex.test(str);
 };
 
 export default isValidPhoneNumber;
