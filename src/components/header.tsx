@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.scss";
 import logo from "../assets/images/logo.png";
 import Button from "@mui/material/Button";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="site-header">
+    <header className={`site-header ${menuOpen ? "open" : ""}`}>
       <div className="logo">
         <Link to="/">
           <img src={logo} alt="Shine Squad Chicago Logo" />
         </Link>
       </div>
-      <nav className="main-nav">
+
+      <button
+        className={`menu-toggle ${menuOpen ? "open" : ""}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle menu"
+        aria-expanded={menuOpen}
+      >
+        <span className="bar" />
+        <span className="bar" />
+        <span className="bar" />
+      </button>
+
+      <nav className={`main-nav ${menuOpen ? "open" : ""}`}>
+        <div className="mobile-header-actions">
+          <Button className="book-btn" variant="contained">
+            Book Now
+          </Button>
+          <Button className="phone-btn" variant="contained">
+            (810) 288-9804
+          </Button>
+        </div>
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -46,9 +68,14 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+
       <div className="header-actions">
-        <Button variant="contained">Book Now</Button>
-        <Button variant="contained">(810) 288-9804</Button>
+        <Button className="book-btn" variant="contained">
+          Book Now
+        </Button>
+        <Button className="phone-btn" variant="contained">
+          (810) 288-9804
+        </Button>
       </div>
     </header>
   );

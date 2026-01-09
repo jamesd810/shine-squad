@@ -41,7 +41,8 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 30%;
+    width: 100%;
+    max-width: 720px;
 
     h3 {
       font-size: 1.8rem;
@@ -79,6 +80,22 @@
           margin-bottom: 10px;
         }
       }
+    }
+  }
+}
+
+// Desktop layout
+@media (min-width: 768px) {
+  .services-page {
+    .service-category {
+      width: 30%;
+    }
+
+    .sectionContainer {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: flex-start;
     }
   }
 }

@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
 
   .logo a {
     font-size: 1.5rem;
@@ -102,14 +103,141 @@
       }
     }
   }
+
+  // hide the desktop header actions on small screens (we'll show mobile actions inside nav)
+  .header-actions.mobile-hidden {
+    display: flex;
+  }
 }
 
 .logo img {
   height: 50px;
 }
 
+/* mobile-only actions: hidden by default (desktop), shown inside mobile media query */
+.mobile-header-actions {
+  display: none;
+}
+
+/* When the mobile menu is open, hide desktop header actions to avoid duplicates */
+.site-header.open .header-actions {
+  display: none !important;
+}
+
+// Shared button styles for header actions (desktop and mobile copies)
+.header-actions .phone-btn,
+.mobile-header-actions .phone-btn,
+.header-actions .book-btn,
+.mobile-header-actions .book-btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.header-actions .phone-btn,
+.mobile-header-actions .phone-btn {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.header-actions .book-btn,
+.mobile-header-actions .book-btn {
+  background-color: #1d88e5;
+  color: #fff;
+}
+
 // Responsive for smaller devices
 @media (max-width: 768px) {
+  .site-header {
+    padding: 0.7rem 1rem;
+    align-items: center;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+
+  .menu-toggle .bar {
+    display: block;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .menu-toggle.open .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.open .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  .main-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: #fff;
+    border-top: 1px solid #eee;
+    display: none;
+    padding: 1rem;
+    z-index: 1200;
+  }
+
+  .mobile-header-actions {
+    display: none;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .main-nav.open {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .dropdown .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    padding-left: 0.5rem;
+  }
+
+  .header-actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
   .main-nav ul {
     flex-direction: column;
     gap: 0.5rem;
@@ -130,5 +258,15 @@
         text-align: center;
       }
     }
+  }
+
+  // Switch which actions are visible: hide desktop header-actions and show mobile actions inside nav
+  .header-actions {
+    display: none !important;
+  }
+
+  .mobile-header-actions {
+    display: flex;
+    flex-direction: column;
   }
 }
