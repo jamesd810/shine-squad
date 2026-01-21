@@ -15,17 +15,6 @@ const Header = () => {
         </Link>
       </div>
 
-      <button
-        className={`menu-toggle ${menuOpen ? "open" : ""}`}
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle menu"
-        aria-expanded={menuOpen}
-      >
-        <span className="bar" />
-        <span className="bar" />
-        <span className="bar" />
-      </button>
-
       <nav className={`main-nav ${menuOpen ? "open" : ""}`}>
         <div className="mobile-header-actions">
           <Button className="book-btn" variant="contained">

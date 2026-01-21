@@ -10,7 +10,7 @@
     "fresh-install": "rm -rf node_modules .vite && rm -f package-lock.json && npm install",
     "build-server": "rm -rf dist && tsc",
     "server": "nodemon ./dist/server/server.js",
-    "app-start": "npm run build && npm run build-server && concurrently \"npm run prod\" \"npm run server\""
+    "app-start": "NODE_ENV=production npm run build && npm run build-server && concurrently \"npm run prod\" \"npm run server\""
   },
   "eslintConfig": {
     "extends": [

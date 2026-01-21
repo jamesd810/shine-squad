@@ -1,7 +1,6 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import ViteExpress from "vite-express";
 import {
   corsOptions,
   transporter,
@@ -51,6 +50,8 @@ app.post("/apply", upload.single("resume"), async (req, res) => {
   }
 });
 
-ViteExpress.listen(app, 5175, () => {
-  console.log(`Server running...`);
+const host = process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
+
+app.listen(5175, host, () => {
+  console.log(`Server running on ${host}:5175...`);
 });
