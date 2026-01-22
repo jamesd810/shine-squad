@@ -51,7 +51,8 @@ app.post("/apply", upload.single("resume"), async (req, res) => {
 });
 
 const host = process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
+const port = process.env.NODE_ENV === "production" ? 80 : 5175;
 
-app.listen(5175, host, () => {
-  console.log(`Server running on ${host}:5175...`);
+app.listen(port, host, () => {
+  console.log(`Server running on ${host}:${port}...`);
 });
