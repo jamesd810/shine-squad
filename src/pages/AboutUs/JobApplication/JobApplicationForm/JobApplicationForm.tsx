@@ -30,7 +30,8 @@ const API_BASE =
   import.meta.env.MODE === "development"
     ? import.meta.env.VITE_LOCALHOST_API_URL
     : process.env.API_URL;
-const apiBaseClean = API_BASE.replace(/\/$/, "");
+// const apiBaseClean = API_BASE.replace(/\/$/, "");
+const apiBaseClean = API_BASE;
 const url = `${apiBaseClean}/apply`;
 
 const JobApplicationForm = ({
@@ -75,7 +76,8 @@ const JobApplicationForm = ({
     }
 
     if (name === "phone") {
-      const msg = value && !isValidPhoneNumber(value) ? "Invalid phone number" : "";
+      const msg =
+        value && !isValidPhoneNumber(value) ? "Invalid phone number" : "";
       setErrors((prev) => ({ ...prev, phone: msg }));
     }
   };
@@ -195,7 +197,10 @@ const JobApplicationForm = ({
           />
         </label>
 
-        <button type="submit" disabled={!isFormComplete || hasErrors || loading}>
+        <button
+          type="submit"
+          disabled={!isFormComplete || hasErrors || loading}
+        >
           {loading ? <LoadingSpinner size={20} /> : "Submit Application"}
         </button>
       </div>
