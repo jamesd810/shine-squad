@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prod": "vite --host --port 443",
+    "prod": "vite --host --port 8082",
     "fresh-install": "rm -rf node_modules .vite && rm -f package-lock.json && npm install",
     "build-server": "rm -rf dist && tsc",
     "server": "nodemon ./dist/server/server.js",
