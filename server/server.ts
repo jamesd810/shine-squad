@@ -16,7 +16,12 @@ app.get("/health", (_req, res) => {
 });
 
 app.post("/apply", upload.single("resume"), async (req, res) => {
-  const { firstName, lastName, phoneNumber, email: applicantEmail } = req.body;
+  const {
+    firstName,
+    lastName,
+    phone: phoneNumber,
+    email: applicantEmail,
+  } = req.body;
 
   if (!req.file) {
     return res.status(400).send("No file uploaded.");
