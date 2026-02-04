@@ -3,6 +3,12 @@ import axios from "axios";
 import isValidEmail from "../../../../utilities/isValidEmail";
 import isValidPhoneNumber from "../../../../utilities/isValidPhoneNumber";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
+import {
+  nameConstant,
+  emailConstant,
+  phoneConstant,
+  minNameLengthMessage,
+} from "../../../../constants";
 
 import "./jobApplicationForm.scss";
 
@@ -15,7 +21,7 @@ type Application = {
   lastName: string;
   email: string;
   phone: string;
-  resume?: File;
+  resume: File;
 };
 
 const applicantDetails: Application = {
@@ -23,14 +29,13 @@ const applicantDetails: Application = {
   lastName: "",
   email: "",
   phone: "",
-  resume: undefined,
+  resume: {} as File,
 };
 
 const API_BASE =
   import.meta.env.MODE === "development"
     ? import.meta.env.VITE_LOCALHOST_API_URL
     : process.env.API_URL;
-// const apiBaseClean = API_BASE.replace(/\/$/, "");
 const apiBaseClean = API_BASE;
 const url = `${apiBaseClean}/apply`;
 
@@ -44,19 +49,42 @@ const JobApplicationForm = ({
 
   let message: string;
 
-  const handleNameInput = (event: React.FocusEvent<HTMLInputElement>) => {
+  const validateInput = (event: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     message = "";
-    if (name === "email" && value && !isValidEmail(value)) {
-      message = "Invalid email address";
+
+    if (name === "firstName") {
+      if (!value) {
+        message = nameConstant;
+      } else if (value.length < 2) {
+        message = minNameLengthMessage;
+      }
     }
-    if (name === "phone" && value && !isValidPhoneNumber(value)) {
+    if (name === "lastName") {
+      if (!value) {
+        message = nameConstant;
+      } else if (value.length < 2) {
+        message = minNameLengthMessage;
+      }
+    }
+    if (name === "email") {
+      if (!value) {
+        message = emailConstant;
+      } else if (name === "email" && value && !isValidEmail(value)) {
+        message = "Invalid email address";
+      }
+    }
+    if (name === "phone") {
+      if (!value) {
+        message = phoneConstant;
+      }
+    } else if (name === "phone" && value && !isValidPhoneNumber(value)) {
       message = "Invalid phone number";
     }
 
     setErrors((prev) => ({
       ...prev,
-      [name]: value ? message : "",
+      [name]: message,
     }));
   };
 
@@ -68,18 +96,6 @@ const JobApplicationForm = ({
       ...prevData,
       [name]: fieldValue,
     }));
-
-    // live-validate email and phone so error messages remain until corrected
-    if (name === "email") {
-      const msg = value && !isValidEmail(value) ? "Invalid email address" : "";
-      setErrors((prev) => ({ ...prev, email: msg }));
-    }
-
-    if (name === "phone") {
-      const msg =
-        value && !isValidPhoneNumber(value) ? "Invalid phone number" : "";
-      setErrors((prev) => ({ ...prev, phone: msg }));
-    }
   };
 
   const onClick = () => {
@@ -137,6 +153,7 @@ const JobApplicationForm = ({
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
+              onBlur={validateInput}
               required
             />
           </div>
@@ -150,6 +167,7 @@ const JobApplicationForm = ({
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
+              onBlur={validateInput}
               required
             />
           </div>
@@ -163,7 +181,7 @@ const JobApplicationForm = ({
               name="email"
               value={formData.email}
               onChange={handleChange}
-              onBlur={handleNameInput}
+              onBlur={validateInput}
               onClick={onClick}
               required
               placeholder="Email Address"
@@ -176,7 +194,7 @@ const JobApplicationForm = ({
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              onBlur={handleNameInput}
+              onBlur={validateInput}
               required
               placeholder="Phone Number"
             />
