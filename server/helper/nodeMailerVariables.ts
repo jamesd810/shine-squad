@@ -25,6 +25,5 @@ export const transporter = nodemailer.createTransport({
 });
 
 // Configure Multer to store files in memory as a buffer
-export const upload = multer({
-  storage: multer.memoryStorage(),
-});
+const storage = multer.memoryStorage();
+export const upload = multer({ storage: storage });
