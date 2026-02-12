@@ -52,10 +52,7 @@ const JobDescription = (): React.JSX.Element => (
             <li>Valid Driver's License</li>
             <li>Access to a working vehicle</li>
             <li>Cleaning supplies</li>
-            <li>
-              Have or be willing to purchase Professional General Liability
-              Insurance
-            </li>
+            <li>General Liability Insurance</li>
           </ul>
         </div>
       </section>
