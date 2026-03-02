@@ -7,5 +7,12 @@ export default defineConfig(() => {
       outDir: "build",
     },
     plugins: [react()],
+    server: {
+      hmr: {
+        host: "www.shinesquadchicago.com",
+        protocol: "wss",
+      },
+      allowedHosts: ["shinesquadchicago.com", "www.shinesquadchicago.com"],
+    },
   };
 });
