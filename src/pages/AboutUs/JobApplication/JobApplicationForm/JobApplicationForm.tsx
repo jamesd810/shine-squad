@@ -34,10 +34,15 @@ const applicantDetails: Application = {
 
 const API_BASE =
   import.meta.env.MODE === "development"
-    ? import.meta.env.VITE_LOCALHOST_API_URL
-    : process.env.API_URL;
-const apiBaseClean = API_BASE;
-const url = `${apiBaseClean}/apply`;
+    ? (import.meta.env.VITE_LOCALHOST_API_URL ?? "")
+    : (import.meta.env.VITE_API_URL ?? "");
+
+const apiBaseClean =
+  API_BASE && API_BASE !== "undefined"
+    ? String(API_BASE).replace(/\/$/, "")
+    : "";
+
+const url = apiBaseClean ? `${apiBaseClean}/apply` : "/apply";
 
 const JobApplicationForm = ({
   onSubmit,
