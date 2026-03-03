@@ -64,13 +64,13 @@ app.post("/apply", upload.single("resume"), async (req, res) => {
 
 // SPA fallback - serve index.html for all non-API routes
 if (process.env.NODE_ENV === "production") {
-  app.get("/*", (_req, res) => {
+  app.use((_req, res) => {
     res.sendFile(path.join(__dirname, "../build/index.html"));
   });
 }
 
 const host = process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
-const port = process.env.NODE_ENV === "production" ? 80 : 5175;
+const port = process.env.NODE_ENV === "production" ? 8082 : 5175;
 
 app.listen(port, host, () => {
   console.log(`Server running on ${host}:${port}...`);
