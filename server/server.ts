@@ -64,7 +64,7 @@ app.post("/apply", upload.single("resume"), async (req, res) => {
 
 // SPA fallback - serve index.html for all non-API routes
 if (process.env.NODE_ENV === "production") {
-  app.get("*", (_req, res) => {
+  app.get("/*", (_req, res) => {
     res.sendFile(path.join(__dirname, "../build/index.html"));
   });
 }
