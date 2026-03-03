@@ -14,8 +14,10 @@ const app = express();
 app.use(cors(corsOptions));
 
 // Serve static files from the build directory in production
+// __dirname in the compiled JS lives in dist/server, so we need to step
+// up two levels to reach the top‑level build folder.
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../build")));
+  app.use(express.static(path.join(__dirname, "../../build")));
 }
 
 app.get("/health", (_req, res) => {
@@ -65,7 +67,7 @@ app.post("/apply", upload.single("resume"), async (req, res) => {
 // SPA fallback - serve index.html for all non-API routes
 if (process.env.NODE_ENV === "production") {
   app.use((_req, res) => {
-    res.sendFile(path.join(__dirname, "../build/index.html"));
+    res.sendFile(path.join(__dirname, "../../build/index.html"));
   });
 }
 
