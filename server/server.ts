@@ -64,9 +64,14 @@ app.post("/apply", upload.single("resume"), async (req, res) => {
   }
 });
 
-// SPA fallback - serve index.html for all non-API routes
+// SPA fallback - serve index.html for non-asset, HTML GET requests
 if (process.env.NODE_ENV === "production") {
-  app.use((_req, res) => {
+  app.use((req, res, next) => {
+    // only handle GET requests that accept HTML
+    if (req.method !== "GET") return next();
+    const accept = req.headers.accept || "";
+    if (!accept.includes("text/html")) return next();
+
     res.sendFile(path.join(__dirname, "../../build/index.html"));
   });
 }
